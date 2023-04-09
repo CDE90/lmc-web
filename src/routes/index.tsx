@@ -1,6 +1,7 @@
 import { For, Show, VoidComponent, createSignal } from "solid-js";
 import { ApiError, ApiResponse, Output, State } from "~/types/lmc";
 import { createRouteAction } from "solid-start";
+import { examples } from "~/examples";
 
 const AssemblePage: VoidComponent = () => {
     const [programState, setProgramState] = createSignal<State>({
@@ -111,7 +112,7 @@ const AssemblePage: VoidComponent = () => {
                 class="grid grid-cols-1 md:grid-cols-3 gap-4"
                 id="assemble-form"
             >
-                <div id="assemble-form" class="flex flex-col gap-2">
+                <div class="flex flex-col gap-2">
                     <div class="h-full">
                         <h2 class="block text-sm font-medium leading-6 text-gray-900">
                             Code
@@ -126,6 +127,41 @@ const AssemblePage: VoidComponent = () => {
                             />
                         </div>
                     </div>
+                    <select
+                        name="examples"
+                        id="examples"
+                        class="block w-full font-mono h-10 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
+                        onChange={(e) => {
+                            const codeElement = document.getElementById(
+                                "code"
+                            ) as HTMLTextAreaElement;
+
+                            if (e.target.value && codeElement.value) {
+                                if (
+                                    !confirm(
+                                        "Are you sure you want to overwrite your code?"
+                                    )
+                                ) {
+                                    return;
+                                }
+                            }
+                            const code = examples.find(
+                                (example) => example.name === e.target.value
+                            )?.code;
+                            if (code) {
+                                codeElement.value = code;
+                            }
+                        }}
+                    >
+                        <option value="">Select an example</option>
+                        <For each={examples}>
+                            {(example) => (
+                                <option value={example.name}>
+                                    {example.name}
+                                </option>
+                            )}
+                        </For>
+                    </select>
                 </div>
                 <div class="flex flex-col gap-2">
                     <div class="h-full">
