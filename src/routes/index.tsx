@@ -12,7 +12,6 @@ const AssemblePage: VoidComponent = () => {
         cir: 0,
         ram: Array.from({ length: 100 }, () => 0),
     });
-    const [prevState, setPrevState] = createSignal<State | null>(null);
     const [isError, setIsError] = createSignal(false);
     const [errorMessage, setErrorMessage] = createSignal("");
     const [input, setInput] = createSignal<number | null>(null);
@@ -76,7 +75,6 @@ const AssemblePage: VoidComponent = () => {
         const data = (await res.json()) as ApiResponse | ApiError;
 
         if (res.ok && "state" in data) {
-            setPrevState(programState());
             setProgramState(data.state);
             setNextRequiresInput(data.next_requires_input);
             if (data.output) {
