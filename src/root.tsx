@@ -1,8 +1,6 @@
 // @refresh reload
 import { Suspense } from "solid-js";
 import {
-    useLocation,
-    A,
     Body,
     ErrorBoundary,
     FileRoutes,
@@ -16,19 +14,18 @@ import {
 import "./root.css";
 
 export default function Root() {
-    const location = useLocation();
-    const active = (path: string) =>
-        path == location.pathname
-            ? "border-sky-600"
-            : "border-transparent hover:border-sky-600";
     return (
         <Html lang="en">
             <Head>
-                <Title>SolidStart - With TailwindCSS</Title>
+                <Title>Little Man Computer - Ethan Coward</Title>
                 <Meta charset="utf-8" />
                 <Meta
                     name="viewport"
                     content="width=device-width, initial-scale=1"
+                />
+                <Meta
+                    name="description"
+                    content="My implementation of the Little Man Computer Assembly Language"
                 />
             </Head>
             <Body>
