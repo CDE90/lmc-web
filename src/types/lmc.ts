@@ -21,17 +21,6 @@ export const apiResponseValidator = z.object({
     output: z.array(outputValidator),
 });
 
-export const apiErrorValidator = z.object({
-    error: z.string(),
-});
-
-export const apiRequestValidator = z.object({
-    state: stateValidator,
-    input: z.array(z.number()),
-});
-
 export type ApiResponse = z.infer<typeof apiResponseValidator>;
-export type ApiError = z.infer<typeof apiErrorValidator>;
 export type State = z.infer<typeof stateValidator>;
-export type ApiRequest = z.infer<typeof apiRequestValidator>;
 export type Output = z.infer<typeof outputValidator>;

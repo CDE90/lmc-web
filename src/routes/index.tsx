@@ -1,5 +1,5 @@
 import { For, Show, VoidComponent, createSignal } from "solid-js";
-import { ApiError, ApiResponse, Output, State } from "~/types/lmc";
+import { ApiResponse, Output, State } from "~/types/lmc";
 import { createRouteAction } from "solid-start";
 import { examples } from "~/examples";
 
@@ -19,28 +19,33 @@ const AssemblePage: VoidComponent = () => {
     const [nextRequiresInput, setNextRequiresInput] = createSignal(false);
     const [executionSpeed, setExecutionSpeed] = createSignal(50);
 
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     const [_, { Form }] = createRouteAction(async (formData: FormData) => {
         setIsError(false);
         setErrorMessage("");
         setOutputs([]);
 
-        const res = await fetch(`/api/assemble`, {
+        const res = await fetch(`https://api.lmc.ethancoward.dev/assemble`, {
             method: "POST",
             body: formData.get("code"),
             headers: {
                 "Content-Type": "text/plain",
             },
         });
+
+        if (!res.ok) {
+            setIsError(true);
+            setErrorMessage(await res.text());
+            return;
+        }
+
         const data = await res.json();
 
-        if (res.ok) {
-            setProgramState(data.state);
-            if (data.state.ram[0] === 901) {
-                setNextRequiresInput(true);
-            }
-        } else {
-            setIsError(true);
-            setErrorMessage(data.error);
+        setProgramState(data.state);
+        if (data.state.ram[0] === 901) {
+            setNextRequiresInput(true);
         }
     });
 
@@ -65,30 +70,29 @@ const AssemblePage: VoidComponent = () => {
 
         setInput(null);
 
-        const res = await fetch(`/api/step`, {
+        const res = await fetch(`https://api.lmc.ethancoward.dev/step`, {
             method: "POST",
             body: body,
             headers: {
                 "Content-Type": "application/json",
             },
+            signal,
         });
-        const data = (await res.json()) as ApiResponse | ApiError;
 
-        if (res.ok && "state" in data) {
-            setProgramState(data.state);
-            setNextRequiresInput(data.next_requires_input);
-            if (data.output) {
-                setOutputs((outputs) => [...outputs, ...data.output]);
-            }
-            return data.state.pc !== -1;
-        } else if ("error" in data) {
+        if (!res.ok) {
             setIsError(true);
-            setErrorMessage(data.error);
-        } else {
-            setIsError(true);
-            setErrorMessage("Unknown error");
+            setErrorMessage(await res.text());
+            return false;
         }
-        return false;
+
+        const data = (await res.json()) as ApiResponse;
+
+        setProgramState(data.state);
+        setNextRequiresInput(data.next_requires_input);
+        if (data.output) {
+            setOutputs((outputs) => [...outputs, ...data.output]);
+        }
+        return data.state.pc !== -1;
     };
 
     const runExecution = async () => {
@@ -97,6 +101,25 @@ const AssemblePage: VoidComponent = () => {
                 setTimeout(resolve, 1000 - executionSpeed() * 10)
             );
         }
+    };
+
+    const resetExecution = () => {
+        setProgramState({
+            acc: 0,
+            pc: 0,
+            mar: 0,
+            mdr: 0,
+            cir: 0,
+            ram: Array.from({ length: 100 }, () => 0),
+        });
+        setOutputs([]);
+        setNextRequiresInput(false);
+        setInput(null);
+    };
+
+    const stopExecution = () => {
+        setProgramState((state) => ({ ...state, pc: -1 }));
+        controller.abort();
     };
 
     return (
@@ -280,6 +303,24 @@ const AssemblePage: VoidComponent = () => {
                             </button>
                         </div>
                         <div class="mt-2 gap-2 flex flex-col">
+                            <button
+                                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                type="button"
+                                onClick={() => resetExecution()}
+                            >
+                                Reset
+                            </button>
+                        </div>
+                        <div class="mt-2 gap-2 flex flex-col">
+                            <button
+                                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                type="button"
+                                onClick={() => stopExecution()}
+                            >
+                                Stop
+                            </button>
+                        </div>
+                        <div class="mt-2 gap-2 flex flex-col">
                             <input
                                 type="range"
                                 min="0"
@@ -293,7 +334,6 @@ const AssemblePage: VoidComponent = () => {
                                 Execution Speed: {executionSpeed()}%
                             </div>
                         </div>
-
                         <Show when={isError() && programState().pc !== -1}>
                             <div
                                 class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4"
@@ -329,7 +369,7 @@ const AssemblePage: VoidComponent = () => {
                 <div class="text-sm flex gap-2 font-mono p-2 flex-wrap">
                     <For each={outputs()}>
                         {(output) => (
-                            <div class="bg-gray-300 rounded-md text-center w-6 h-6 p-1">
+                            <div class="bg-gray-300 rounded-md text-center w-fit h-6 p-1">
                                 {"Int" in output ? output.Int : output.Char}
                             </div>
                         )}
