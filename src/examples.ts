@@ -75,6 +75,8 @@ LOOP    LDA TOTAL
         STA NUM2
         BRP LOOP
         LDA TOTAL
+        SUB NUM1
+        STA TOTAL
         OUT
         HLT
 
