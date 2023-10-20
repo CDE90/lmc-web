@@ -19,10 +19,10 @@ dependencies:
     version: 1.7.3
   solid-start:
     specifier: ^0.3.0
-    version: 0.3.7(@solidjs/meta@0.28.4)(@solidjs/router@0.8.2)(solid-js@1.7.3)(solid-start-node@0.3.7)(solid-start-vercel@0.2.26)(vite@4.2.1)
+    version: 0.3.7(@solidjs/meta@0.28.4)(@solidjs/router@0.8.2)(solid-js@1.7.3)(solid-start-node@0.3.7)(solid-start-vercel@0.3.7)(vite@4.2.1)
   solid-start-vercel:
-    specifier: ^0.2.26
-    version: 0.2.26(solid-start@0.3.7)(vite@4.2.1)
+    specifier: ^0.3.0
+    version: 0.3.7(solid-start@0.3.7)(vite@4.2.1)
   undici:
     specifier: ^5.15.1
     version: 5.21.1
@@ -1640,23 +1640,6 @@ packages:
   /@polka/url@1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
 
-  /@rollup/plugin-commonjs@24.0.1(rollup@3.20.2):
-    resolution: {integrity: sha512-15LsiWRZk4eOGqvrJyu3z3DaBu5BhXIMeWnijSRvd8irrrg9SHpQ1pH+BUK4H6Z9wL9yOxZJMTLU+Au86XHxow==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^2.68.0||^3.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-    dependencies:
-      '@rollup/pluginutils': 5.0.5(rollup@3.20.2)
-      commondir: 1.0.1
-      estree-walker: 2.0.2
-      glob: 8.1.0
-      is-reference: 1.2.1
-      magic-string: 0.27.0
-      rollup: 3.20.2
-
   /@rollup/plugin-commonjs@24.1.0(rollup@3.29.4):
     resolution: {integrity: sha512-eSL45hjhCWI0jCCXcNtLVqM5N1JlBGvlFfY0m6oOYnLCJ6N0qEXoZql4sY2MOUArzhH4SA/qBpTxvvZp2Sc+DQ==}
     engines: {node: '>=14.0.0'}
@@ -1674,18 +1657,6 @@ packages:
       magic-string: 0.27.0
       rollup: 3.29.4
 
-  /@rollup/plugin-json@6.0.0(rollup@3.20.2):
-    resolution: {integrity: sha512-i/4C5Jrdr1XUarRhVu27EEwjt4GObltD7c+MkCIpO2QIbojw8MUs+CCTqOphQi3Qtg1FLmYt+l+6YeoIf51J7w==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-    dependencies:
-      '@rollup/pluginutils': 5.0.5(rollup@3.20.2)
-      rollup: 3.20.2
-
   /@rollup/plugin-json@6.0.0(rollup@3.29.4):
     resolution: {integrity: sha512-i/4C5Jrdr1XUarRhVu27EEwjt4GObltD7c+MkCIpO2QIbojw8MUs+CCTqOphQi3Qtg1FLmYt+l+6YeoIf51J7w==}
     engines: {node: '>=14.0.0'}
@@ -1697,23 +1668,6 @@ packages:
     dependencies:
       '@rollup/pluginutils': 5.0.5(rollup@3.29.4)
       rollup: 3.29.4
-
-  /@rollup/plugin-node-resolve@15.0.2(rollup@3.20.2):
-    resolution: {integrity: sha512-Y35fRGUjC3FaurG722uhUuG8YHOJRJQbI6/CkbRkdPotSpDj9NtIN85z1zrcyDcCQIW4qp5mgG72U+gJ0TAFEg==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^2.78.0||^3.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-    dependencies:
-      '@rollup/pluginutils': 5.0.5(rollup@3.20.2)
-      '@types/resolve': 1.20.2
-      deepmerge: 4.3.1
-      is-builtin-module: 3.2.1
-      is-module: 1.0.0
-      resolve: 1.22.2
-      rollup: 3.20.2
 
   /@rollup/plugin-node-resolve@15.2.3(rollup@3.29.4):
     resolution: {integrity: sha512-j/lym8nf5E21LwBT4Df1VD6hRO2L2iwUeUmP7litikRsVp1H6NWx20NEp0Y7su+7XGc476GnXXc4kFeZNGmaSQ==}
@@ -1738,20 +1692,6 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
-
-  /@rollup/pluginutils@5.0.5(rollup@3.20.2):
-    resolution: {integrity: sha512-6aEYR910NyP73oHiJglti74iRyOwgFU4x3meH/H8OJx6Ry0j6cOVZ5X/wTvub7G7Ao6qaHBEaNsV3GLJkSsF+Q==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
-    peerDependenciesMeta:
-      rollup:
-        optional: true
-    dependencies:
-      '@types/estree': 1.0.0
-      estree-walker: 2.0.2
-      picomatch: 2.3.1
-      rollup: 3.20.2
 
   /@rollup/pluginutils@5.0.5(rollup@3.29.4):
     resolution: {integrity: sha512-6aEYR910NyP73oHiJglti74iRyOwgFU4x3meH/H8OJx6Ry0j6cOVZ5X/wTvub7G7Ao6qaHBEaNsV3GLJkSsF+Q==}
@@ -2789,7 +2729,7 @@ packages:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
     dependencies:
-      semver: 6.3.0
+      semver: 6.3.1
 
   /merge-anything@5.1.4:
     resolution: {integrity: sha512-7PWKwGOs5WWcpw+/OvbiFiAvEP6bv/QHiicigpqMGKIqPPAtGhBLR8LFJW+Zu6m9TXiR/a8+AiPlGG0ko1ruoQ==}
@@ -3281,10 +3221,6 @@ packages:
   /safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
 
-  /semver@6.3.0:
-    resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
-    hasBin: true
-
   /semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
@@ -3356,33 +3292,33 @@ packages:
       polka: 1.0.0-next.22
       rollup: 3.29.4
       sirv: 2.0.3
-      solid-start: 0.3.7(@solidjs/meta@0.28.4)(@solidjs/router@0.8.2)(solid-js@1.7.3)(solid-start-node@0.3.7)(solid-start-vercel@0.2.26)(vite@4.2.1)
+      solid-start: 0.3.7(@solidjs/meta@0.28.4)(@solidjs/router@0.8.2)(solid-js@1.7.3)(solid-start-node@0.3.7)(solid-start-vercel@0.3.7)(vite@4.2.1)
       terser: 5.22.0
       vite: 4.2.1
     transitivePeerDependencies:
       - supports-color
 
-  /solid-start-vercel@0.2.26(solid-start@0.3.7)(vite@4.2.1):
-    resolution: {integrity: sha512-wSw2+P7xhAvh0+rgeogVl1PO052hgLbL7B//0JYnEd/M1eWSK0wcT0VgiExkbZUSouWQpLY1f0n1RYswBzpjWw==}
+  /solid-start-vercel@0.3.7(solid-start@0.3.7)(vite@4.2.1):
+    resolution: {integrity: sha512-NJfdcCjnVuyhTYJJoPwNYAltU6IFCcIqKqyizHJkpeAd9HPyjV2tEaI+6Va71RQAu5LO+FlOYLb6ub6+coIMXA==}
     peerDependencies:
       solid-start: '*'
       vite: '*'
     dependencies:
-      '@rollup/plugin-commonjs': 24.0.1(rollup@3.20.2)
-      '@rollup/plugin-json': 6.0.0(rollup@3.20.2)
-      '@rollup/plugin-node-resolve': 15.0.2(rollup@3.20.2)
+      '@rollup/plugin-commonjs': 24.1.0(rollup@3.29.4)
+      '@rollup/plugin-json': 6.0.0(rollup@3.29.4)
+      '@rollup/plugin-node-resolve': 15.2.3(rollup@3.29.4)
       '@vercel/nft': 0.22.6
       fast-glob: 3.2.12
       micromatch: 4.0.5
-      rollup: 3.20.2
-      solid-start: 0.3.7(@solidjs/meta@0.28.4)(@solidjs/router@0.8.2)(solid-js@1.7.3)(solid-start-node@0.3.7)(solid-start-vercel@0.2.26)(vite@4.2.1)
-      terser: 5.16.8
+      rollup: 3.29.4
+      solid-start: 0.3.7(@solidjs/meta@0.28.4)(@solidjs/router@0.8.2)(solid-js@1.7.3)(solid-start-node@0.3.7)(solid-start-vercel@0.3.7)(vite@4.2.1)
+      terser: 5.22.0
       vite: 4.2.1
     transitivePeerDependencies:
       - encoding
       - supports-color
 
-  /solid-start@0.3.7(@solidjs/meta@0.28.4)(@solidjs/router@0.8.2)(solid-js@1.7.3)(solid-start-node@0.3.7)(solid-start-vercel@0.2.26)(vite@4.2.1):
+  /solid-start@0.3.7(@solidjs/meta@0.28.4)(@solidjs/router@0.8.2)(solid-js@1.7.3)(solid-start-node@0.3.7)(solid-start-vercel@0.3.7)(vite@4.2.1):
     resolution: {integrity: sha512-16L+yaLbxjcovYwBovcdv9wi0zD8/SsHL9XYusqoxri1Xg2xy+uUPBWdmhOAUq6+R7qjyHJPX53ILUVJTj1qng==}
     hasBin: true
     peerDependencies:
@@ -3448,7 +3384,7 @@ packages:
       sirv: 2.0.3
       solid-js: 1.7.3
       solid-start-node: 0.3.7(solid-start@0.3.7)(vite@4.2.1)
-      solid-start-vercel: 0.2.26(solid-start@0.3.7)(vite@4.2.1)
+      solid-start-vercel: 0.3.7(solid-start@0.3.7)(vite@4.2.1)
       terser: 5.22.0
       undici: 5.26.4
       vite: 4.2.1
@@ -3579,16 +3515,6 @@ packages:
       minizlib: 2.1.2
       mkdirp: 1.0.4
       yallist: 4.0.0
-
-  /terser@5.16.8:
-    resolution: {integrity: sha512-QI5g1E/ef7d+PsDifb+a6nnVgC4F22Bg6T0xrBrz6iloVB4PUkkunp6V8nzoOOZJIzjWVdAGqCdlKlhLq/TbIA==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dependencies:
-      '@jridgewell/source-map': 0.3.3
-      acorn: 8.8.2
-      commander: 2.20.3
-      source-map-support: 0.5.21
 
   /terser@5.22.0:
     resolution: {integrity: sha512-hHZVLgRA2z4NWcN6aS5rQDc+7Dcy58HOf2zbYwmFcQ+ua3h6eEFf5lIDKTzbWwlazPyOZsFQO8V80/IjVNExEw==}
