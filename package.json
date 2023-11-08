@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@solidjs/meta": "^0.28.2",
-    "@solidjs/router": "^0.8.2",
+    "@solidjs/router": "^0.9.0",
     "@tailwindcss/forms": "^0.5.3",
     "solid-js": "^1.7.2",
     "solid-start": "^0.3.0",
